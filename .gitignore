@@ -1,0 +1,26 @@
+# --- Never publish: contains a live authenticated session (cookies, Keycloak/Imperva) ---
+.pje-profile/
+
+# --- Never publish: downloaded court documents (case data / personal information) ---
+downloads/
+*.zip
+
+# Per-case run artifacts (regenerated on each run)
+_manifest.csv
+_failures.csv
+_state.json
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Secrets / local config
+.env
+.env.*
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

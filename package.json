@@ -1,0 +1,34 @@
+{
+  "name": "pje-downloader",
+  "version": "1.0.0",
+  "description": "Bulk-download every document of a Brazilian PJe (TRF1) court process by driving the authenticated viewer with Playwright.",
+  "type": "commonjs",
+  "bin": {
+    "pje-download": "./pje-download.js"
+  },
+  "scripts": {
+    "start": "node pje-download.js"
+  },
+  "dependencies": {
+    "playwright": "1.60.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "pje",
+    "trf1",
+    "playwright",
+    "scraper",
+    "court",
+    "downloader",
+    "brazil"
+  ],
+  "author": "Oscar Neto (@oscaromsn)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oscaromsn/pje-downloader.git"
+  },
+  "homepage": "https://github.com/oscaromsn/pje-downloader#readme"
+}
