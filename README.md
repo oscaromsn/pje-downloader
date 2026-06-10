@@ -2,7 +2,7 @@
 
 Bulk-download every document of a process in Brazil's **PJe** (Processo Judicial Eletrônico) — specifically the **TRF1** deployment — by driving the court's own document viewer with [Playwright](https://playwright.dev/).
 
-A single process, especially an old one, can carry hundreds or thousands of documents: petitions, decisions, certificates, appended cases (*apensos*), bound volumes, plus attached media. PJe lets you read them one at a time in a viewer. There is no "download everything" button. This is that button.
+A single process, especially an old one, can carry hundreds or thousands of documents: petitions, decisions, certificates, appended cases (*apensos*), bound volumes, plus attached media. PJe *does* ship an official "download all the autos" feature — but it's unreliable on large processes, and at the time of writing it's failing outright on them because of an unfixed bug in the court system. This tool is the workaround: when the official export won't hand you the autos, it rebuilds the full set by driving the document viewer one document at a time.
 
 ## Why it has to drive the viewer
 
@@ -86,7 +86,7 @@ downloads/<process-number>/
 
 ## Caveats & scope
 
-- It targets **TRF1** (`pje1g.trf1.jus.br`). The approach carries over to other PJe deployments, but the selectors and iframe names will likely need adjusting.
+- It was written for and tested against **TRF1** (`pje1g.trf1.jus.br`), but nothing here is really TRF1-specific beyond the hostname. It keys off PJe's own building blocks — the viewer's `framePdf` / `frameHtml` / `frameBinario` panels, the `N de TOTAL` pager, and the `/documento/download/{id}` endpoint — which are shared across PJe deployments of the same version. Pointing it at another PJe-based court should take minimal changes, mostly the login URL and the host check.
 - **You log in yourself.** The script never sees or stores your password; the only thing persisted is the browser profile on your own disk.
 - It's deliberately gentle — a short pause between documents, and it backs off instead of hammering when the server is unhappy. Please keep it that way, and only run it on cases you're authorized to access.
 - The HTML→PDF renderer is unauthenticated, so any session-gated images embedded in an HTML body won't load. The text still renders, which is what these particular manifestations actually contain.
